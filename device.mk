@@ -414,5 +414,14 @@ PRODUCT_COPY_FILES += \
 # Inherit the proprietary files makefile
 $(call inherit-product, vendor/nothing/Tetris/Tetris-vendor.mk)
 
+
 #BCR
 $(call inherit-product, vendor/bcr/bcr.mk)
+
+# MediaTek Bluetooth audio AIDL interface built from source
+PRODUCT_PACKAGES += vendor.mediatek.hardware.bluetooth.audio-V1-ndk.vendor
+
+# MediaTek Bluetooth audio HIDL interfaces built from source
+PRODUCT_PACKAGES += vendor.mediatek.hardware.bluetooth.audio@2.1.vendor
+PRODUCT_PACKAGES += vendor.mediatek.hardware.bluetooth.audio@2.2.vendor
+
