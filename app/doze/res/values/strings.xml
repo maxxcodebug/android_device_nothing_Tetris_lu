@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Help dialog shown the first time the doze settings are opened -->
+    <string name="doze_settings_help_title">Help</string>
+    <string name="doze_settings_help_text">These features use sensor events to turn on the ambient display. The sensor is enabled when a notification is received, which reduces battery usage. There is also an option to enable the sensor right after the screen is turned off, which will use more battery.</string>
+</resources>
