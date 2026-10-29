@@ -47,11 +47,10 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.effect@7.0-impl \
     android.hardware.audio.service.mediatek \
     android.hardware.bluetooth.audio-impl \
-    android.hardware.bluetooth.audio-impl-mediatek-hidl \
     android.hardware.bluetooth.audio-V3-ndk.vendor \
-    vendor.mediatek.hardware.bluetooth.audio-V1-ndk.vendor \
-    vendor.mediatek.hardware.bluetooth.audio@2.1.vendor \
-    vendor.mediatek.hardware.bluetooth.audio@2.2.vendor \
+    vendor.mediatek.hardware.bluetooth.audio-V1-ndk_vendor \
+    vendor.mediatek.hardware.bluetooth.audio@2.1-impl \
+    vendor.mediatek.hardware.bluetooth.audio@2.2-impl \
     android.hardware.soundtrigger@2.3-impl
 
 PRODUCT_PACKAGES += \
@@ -107,7 +106,7 @@ PRODUCT_PACKAGES += \
     libcamera_metadata_shim \
     libmtk_cam_shim_Tetris \
     libprocessgroup_shim \
-    vendor.mediatek.hardware.lbs@1.0.vendor
+    vendor.mediatek.hardware.lbs@1.0
 
 
 PRODUCT_COPY_FILES += \
@@ -220,7 +219,7 @@ PRODUCT_COPY_FILES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    vendor.mediatek.hardware.lbs@1.0.vendor
+    vendor.mediatek.hardware.lbs@1.0
 
 # LiveDisplay
 PRODUCT_PACKAGES += \
@@ -419,9 +418,9 @@ $(call inherit-product, vendor/nothing/Tetris/Tetris-vendor.mk)
 $(call inherit-product, vendor/bcr/bcr.mk)
 
 # MediaTek Bluetooth audio AIDL interface built from source
-PRODUCT_PACKAGES += vendor.mediatek.hardware.bluetooth.audio-V1-ndk.vendor
+PRODUCT_PACKAGES += vendor.mediatek.hardware.bluetooth.audio-V1-ndk_vendor
 
 # MediaTek Bluetooth audio HIDL interfaces built from source
-PRODUCT_PACKAGES += vendor.mediatek.hardware.bluetooth.audio@2.1.vendor
-PRODUCT_PACKAGES += vendor.mediatek.hardware.bluetooth.audio@2.2.vendor
+PRODUCT_PACKAGES += vendor.mediatek.hardware.bluetooth.audio@2.1-impl
+PRODUCT_PACKAGES += vendor.mediatek.hardware.bluetooth.audio@2.2-impl
 
