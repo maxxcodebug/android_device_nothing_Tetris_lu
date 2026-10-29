@@ -47,16 +47,12 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.effect@7.0-impl \
     android.hardware.audio.service.mediatek \
     android.hardware.bluetooth.audio-impl \
-
     android.hardware.bluetooth.audio-impl-mediatek-hidl \
-    android.hardware.bluetooth.audio-V3-ndk.vendor
-
     android.hardware.bluetooth.audio-V3-ndk.vendor \
     vendor.mediatek.hardware.bluetooth.audio-V1-ndk.vendor \
     vendor.mediatek.hardware.bluetooth.audio@2.1.vendor \
     vendor.mediatek.hardware.bluetooth.audio@2.2.vendor \
     android.hardware.soundtrigger@2.3-impl
-
 
 PRODUCT_PACKAGES += \
     audio.primary.default \
