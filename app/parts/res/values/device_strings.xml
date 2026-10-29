@@ -3,7 +3,8 @@
 <resources>
     <string name="parts_device_android">Android %1$s</string>
     <string name="parts_device_maintainer">Maintainer: %1$s</string>
-    <string name="parts_device_maintainer_name" translatable="false">Lufrz</string>
+    <string name="parts_device_maintainer_name" translatable="false">Anshuman X</string>
+    <string name="parts_device_maintainer_thanks" translatable="false">Thanks to Lufrz for bringing Tetris Parts to the community. Your work made this possible.</string>
     <string name="parts_spec_processor">Processor</string>
     <string name="parts_spec_camera">Camera</string>
     <string name="parts_spec_ram">RAM</string>
