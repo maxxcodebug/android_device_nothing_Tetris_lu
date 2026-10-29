@@ -4,6 +4,18 @@
 package org.lineageos.settings.tetris
 
 import android.os.Build
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.material3.IconButton
+import androidx.compose.material.icons.filled.Image
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.compose.rememberLauncherForActivityResult
+import android.net.Uri
+import android.graphics.BitmapFactory
+import android.content.Intent
 import android.text.format.Formatter
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -48,33 +60,96 @@ import org.lineageos.settings.tetris.ui.PartsPageGutter
 
 @Composable
 internal fun DeviceHero(deviceName: String) {
+    val context = LocalContext.current
+    val prefs = remember {
+        context.getSharedPreferences(
+            "tetris_parts_wallpaper",
+            android.content.Context.MODE_PRIVATE
+        )
+    }
+
+    var wallpaperUri by remember {
+        mutableStateOf(
+            prefs.getString("wallpaper_uri", null)?.let(Uri::parse)
+        )
+    }
+
+    val picker = rememberLauncherForActivityResult(
+        ActivityResultContracts.OpenDocument()
+    ) { uri ->
+        if (uri != null) {
+            runCatching {
+                context.contentResolver.takePersistableUriPermission(
+                    uri, Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+            }
+            prefs.edit().putString("wallpaper_uri", uri.toString()).apply()
+            wallpaperUri = uri
+        }
+    }
+
+    val customBitmap = remember(wallpaperUri) {
+        wallpaperUri?.let { uri ->
+            runCatching {
+                context.contentResolver.openInputStream(uri)?.use {
+                    BitmapFactory.decodeStream(it)
+                }
+            }.getOrNull()
+        }
+    }
+
     Surface(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = PartsPageGutter, vertical = 6.dp),
         shape = PartsGroupShape,
-        color = Color(0xFFFFDCE1),
-        contentColor = Color(0xFF542638),
+        color = Color(0xFF17252D),
+        contentColor = Color.White,
     ) {
         Box(
             modifier = Modifier.fillMaxWidth().heightIn(min = 180.dp),
             contentAlignment = Alignment.Center,
         ) {
-            Image(
-                painter = painterResource(R.drawable.tetris_device_background),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.matchParentSize(),
-            )
-            // Keep the text readable over the artwork in both system themes.
+            if (customBitmap != null) {
+                Image(
+                    bitmap = customBitmap.asImageBitmap(),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.matchParentSize(),
+                )
+            } else {
+                Image(
+                    painter = painterResource(R.drawable.tetris_device_background),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.matchParentSize(),
+                )
+            }
+
             Box(
                 Modifier.matchParentSize().background(
                     Brush.horizontalGradient(
-                        listOf(Color(0xB3FFF4ED), Color(0x99FFF4ED)),
+                        listOf(Color(0x99081720), Color(0x66081720)),
                     ),
                 ),
             )
-            DeviceHeading(deviceName, Modifier.fillMaxWidth().padding(24.dp))
+
+            DeviceHeading(
+                deviceName,
+                Modifier.fillMaxWidth()
+                    .padding(horizontal = 24.dp, vertical = 32.dp),
+            )
+
+            IconButton(
+                onClick = { picker.launch(arrayOf("image/*")) },
+                modifier = Modifier.align(Alignment.TopEnd).padding(4.dp),
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Image,
+                    contentDescription = "Change wallpaper",
+                    tint = Color.White,
+                )
+            }
         }
     }
 }
@@ -114,6 +189,12 @@ private fun DeviceHeading(deviceName: String, modifier: Modifier = Modifier) {
             style = MaterialTheme.typography.labelLarge,
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth().padding(top = 12.dp),
+        )
+        Text(
+            text = stringResource(R.string.parts_device_maintainer_thanks),
+            style = MaterialTheme.typography.bodySmall,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
         )
     }
 }
