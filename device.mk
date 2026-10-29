@@ -127,7 +127,7 @@ PRODUCT_COPY_FILES += \
 $(call inherit-product, hardware/dolby/dolby.mk)
 
 PRODUCT_PACKAGES += \
-    LunarisDolby
+    MaxxDolby
 
 # Doze
 PRODUCT_PACKAGES += \
