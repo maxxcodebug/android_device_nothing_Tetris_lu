@@ -37,8 +37,8 @@ BOARD_SHIPPING_API_LEVEL := 34
 PRODUCT_SHIPPING_API_LEVEL := 34
 
 
-# Build Signing
--include vendor/infinity-priv/keys/keys.mk
+# Build Signing by Anshuman's key
+-include vendor/lineage-priv/keys/keys.mk
 
 # Audio
 $(call soong_config_set_bool,android_hardware_audio,skip_speaker_layout_channel_mask_field,true)
