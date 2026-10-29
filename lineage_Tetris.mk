@@ -25,7 +25,7 @@ PRODUCT_GMS_CLIENTID_BASE := android-nothing
 
 DEVICE_CODENAME := Tetris
 
-TARGET_UNOFFICIAL_BUILD_ID := Lufrz
+TARGET_UNOFFICIAL_BUILD_ID := Anshuman_X
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildDesc="sys_mssi_64_64only_ww_armv82-user 16 BP2A.250605.031.A3 2606151652 release-keys" \
@@ -34,3 +34,8 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     DeviceName=$(DEVICE_CODENAME) \
     SystemDevice=$(DEVICE_CODENAME) \
     SystemName=$(DEVICE_CODENAME)
+
+#LineageOS -flags
+TARGET_ENABLE_BLUR := true
+PERF_ANIM_OVERRIDE := true 
+WITH_GMS := true
